@@ -38,5 +38,9 @@ public class EmployeeService {
 	public void deleteEmployee(int employeeId) {
 		repository.deleteById(employeeId);
 	}
+	
+	public boolean isExists(int employeeId) {
+		return repository.existsById(employeeId);
+	}
 
 }

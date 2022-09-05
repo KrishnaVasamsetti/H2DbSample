@@ -11,6 +11,11 @@ public class InfoController {
 	
 	@GetMapping
 	public String getAppInfo() {
-		return "<a href='http://localhost:8081/v2/api-docs'>Api Documentation</a>";
+		return 
+				"<H1>Employee Details </H1>"
+				+ "<a href='http://localhost:8081/v2/api-docs'>Swagger UI docs</a>"
+				+ "<br>"
+				+ "<a href='http://localhost:8081/v2/api-docs'>Api Documentation</a>"
+				;
 	}
 }
