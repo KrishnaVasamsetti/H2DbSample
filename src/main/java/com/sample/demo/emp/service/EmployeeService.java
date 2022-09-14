@@ -3,6 +3,7 @@ package com.sample.demo.emp.service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,14 @@ public class EmployeeService {
 			employees.add(emp);
 		}
 		return employees;
+	}
+	
+	public Employee getEmployeeById(int employeeId) {
+		Optional<Employee> emp = repository.findById(employeeId);
+		if(emp.isPresent()) {
+			return emp.get();
+		}
+		return null;
 	}
 	
 	public Employee insertEmployee(Employee employee) {
