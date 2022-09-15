@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class InfoController {
 
-	
+
 	@GetMapping
 	public String getAppInfo() {
 		return 
@@ -18,4 +18,5 @@ public class InfoController {
 				+ "<a href='http://localhost:8081/v2/api-docs'>Api Docs</a>"
 				;
 	}
+
 }
