@@ -22,7 +22,7 @@ import com.sample.demo.helper.SuccessDTO;
 
 @RestController
 @RequestMapping("/employee")
-public class EmployeeController {
+public class EmployeeRestController {
 
 	@Autowired
 	EmployeeService employeeService;
