@@ -1,0 +1,26 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+	    <title>Welcome</title>
+	    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+	</head>
+	
+	<body th:object="${allEmployees}">
+		<h4> Employee Details...! </h4>
+		<h4 th:unless="${isSuccess}">Something went wrong..!</h4>
+		<div th:if="${isSuccess}">
+			<h4 th:if="${allEmployees.size == 0}">Employees not exists</h4>	
+			<table th:if="${isSuccess}">
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+				</tr>
+				<tr th:each="employee:${allEmployees}">
+					<td th:text="${employee.id}"/>
+					<td th:text="${employee.name}"/>
+				</tr>
+			</table>
+		</div>
+	</body>
+
+</html>

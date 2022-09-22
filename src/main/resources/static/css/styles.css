@@ -1,0 +1,12 @@
+h4 {
+   color: red;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+body {
+    background-color: lightblue;
+}
