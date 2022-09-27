@@ -40,6 +40,8 @@ public class SuccessDTO<T> implements java.io.Serializable {
 		this.body = body;
 		this.length = length;
 	}
+	public SuccessDTO() {
+	}
 	public void setLength(Integer length) {
 		this.length = length;
 	}

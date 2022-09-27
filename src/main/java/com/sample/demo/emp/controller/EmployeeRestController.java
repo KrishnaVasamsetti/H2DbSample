@@ -46,6 +46,17 @@ public class EmployeeRestController {
 			return ResponseEntity.ok(error);
 		}
 	}
+	
+	@GetMapping("/get/{id}")
+	public ResponseEntity<Employee> getEmployeeByIdLatest(@PathVariable("id") int id) {
+		Employee emp = employeeService.getEmployeeById(id);
+		if(emp != null) {
+			return ResponseEntity.ok(emp);
+		}
+		else {
+			return ResponseEntity.noContent().build();
+		}
+	}
 
 	@PostMapping("create")
 	public Employee insert(@RequestBody Employee employee) {

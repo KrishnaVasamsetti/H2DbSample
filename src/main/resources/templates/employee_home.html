@@ -6,21 +6,29 @@
 	</head>
 	
 	<body th:object="${allEmployees}">
+	
+	<a href="./addEmployee">Add Employee</a>
+	
 		<h4> Employee Details...! </h4>
 		<h4 th:unless="${isSuccess}">Something went wrong..!</h4>
 		<div th:if="${isSuccess}">
 			<h4 th:if="${allEmployees.size == 0}">Employees not exists</h4>	
-			<table th:if="${isSuccess}">
+			<table th:unless="${allEmployees.size == 0}">
 				<tr>
 					<th>Id</th>
 					<th>Name</th>
+					<th></th>
 				</tr>
 				<tr th:each="employee:${allEmployees}">
 					<td th:text="${employee.id}"/>
 					<td th:text="${employee.name}"/>
+					<td><a th:href="@{./updateEmployee/{id}(id=${employee.id})}">Edit</a></td>
+					<td><a th:href="@{./deleteEmployee/{id}(id=${employee.id})}">Delete</a></td>
 				</tr>
+				
 			</table>
 		</div>
+		
 	</body>
 
 </html>
