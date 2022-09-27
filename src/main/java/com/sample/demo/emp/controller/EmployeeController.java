@@ -12,11 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import com.sample.demo.emp.model.Employee;
@@ -45,17 +48,24 @@ public class EmployeeController {
 		return "employee_home";
 	}
 	
-	@PostMapping("saveEmployee")
-	public String saveEmployee(@ModelAttribute("employee") Employee employee) {
-		System.out.println("Employee:"+employee);
+	@PostMapping(value = "saveEmployee", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public String saveEmployee(@RequestParam MultiValueMap<String,String> paramMap, Model model) {
+		Employee employee = new Employee();
+		String idString = paramMap.getFirst("id");
+		String nameString = paramMap.getFirst("name");
+		int id = Integer.parseInt(idString);
+		employee.id = id;
+		employee.name = nameString;
+		System.out.println("Employee paramMap:"+paramMap);
 		System.out.println("EmployeeDetails:"+employee.id+"  Name: "+employee.name);
 		String saveUrl = "http://localhost:8081/employee/create";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<Employee> entity = new HttpEntity<Employee>(employee, headers);
 		ResponseEntity<Employee> result = restTemplate.exchange(saveUrl, HttpMethod.POST, entity, Employee.class);
 		System.out.println("Res:"+result.getBody());
-		return "//:redirect";
+        return "redirect:/home";
 	}
 	
 	@RequestMapping("addEmployee")
@@ -79,7 +89,7 @@ public class EmployeeController {
 		System.out.println("Employee:"+employee);
 		
 		model.addAttribute("employee", employee);
-		return "employee_add";
+		return "employee_update";
 	}
 	
 

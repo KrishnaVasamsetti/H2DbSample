@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+    <meta charset="UTF-8">
+	    <title>Add</title>
+	    <link th:href="@{/css/styles.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		
+		<h4 th:text="'User: '+${employee.id}"/>
+		<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+            <input type="hidden" name="id" field="${employee.id}" th:value="${employee.id}" /> <!-- Not working <input type="text" th:field="*{content}">-->
+            <br/>
+            <input type="text" name="name" field="${employee.name}" th:value="${employee.name}"/>
+            <br/>
+		    <button type="submit">Save Employee</button>
+		</form>
+	</body>
+
+</html>
