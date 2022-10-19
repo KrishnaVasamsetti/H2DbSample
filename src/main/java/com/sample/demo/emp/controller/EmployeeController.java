@@ -31,6 +31,11 @@ public class EmployeeController {
 	@Autowired
 	RestTemplate restTemplate;
 	
+	@GetMapping("login")
+	public String getLoginForm() {
+		return "user_login";
+	}
+	
 	
 	@GetMapping("/home")
 	public String getAllEmployees(Model model) {
