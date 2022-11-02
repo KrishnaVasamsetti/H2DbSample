@@ -57,6 +57,12 @@ public class EmployeeRestController {
 			return ResponseEntity.noContent().build();
 		}
 	}
+	
+	@GetMapping("/search/{name}")
+	public ResponseEntity<List<Employee>> searchWithIdAndName(@PathVariable("name") String name) {
+		List<Employee> results= employeeService.searchEmployeeByNameOrId(name);
+		return ResponseEntity.ok(results);
+	}
 
 	@PostMapping("create")
 	public Employee insert(@RequestBody Employee employee) {

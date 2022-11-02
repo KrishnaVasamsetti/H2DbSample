@@ -52,5 +52,9 @@ public class EmployeeService {
 	public boolean isExists(int employeeId) {
 		return repository.existsById(employeeId);
 	}
+	
+	public List<Employee> searchEmployeeByNameOrId(String name) {
+		return repository.findByNameContaining(name);
+	}
 
 }
