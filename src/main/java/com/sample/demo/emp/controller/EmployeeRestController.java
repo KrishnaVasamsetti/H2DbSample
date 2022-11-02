@@ -58,7 +58,7 @@ public class EmployeeRestController {
 		}
 	}
 	
-	@GetMapping("/search/{name}")
+	@GetMapping("/searchByName/{name}")
 	public ResponseEntity<List<Employee>> searchWithIdAndName(@PathVariable("name") String name) {
 		List<Employee> results= employeeService.searchEmployeeByNameOrId(name);
 		return ResponseEntity.ok(results);
